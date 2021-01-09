@@ -28,11 +28,20 @@ with open(pybank_csv, 'r') as csvfile:
 
         greatest_profit = max(change_profit_loss)
         greatest_loss = min(change_profit_loss)
-print(f'total months:{len(total_months)}')
-print(f'total profit loss:${sum(profit_loss)}')
-print(f'average change:$ {round(average_change,2)}')
-print(f'greatest increase in profit is: ${greatest_profit}')
-print(f'greatest loss in profit is: ${greatest_loss}')
+max_index=change_profit_loss.index(greatest_profit)
+min_index=change_profit_loss.index(greatest_loss)
+# print(change_profit_loss.index(greatest_profit))
+# print(total_months[max_index+1])
+# print(total_months[min_index+1])
+print('  ')
+print('Financial Analysis')
+print('---------------------------------')
+print(f'Total Months: {len(total_months)}')
+print(f'Total: ${sum(profit_loss)}')
+print(f'Average Change: ${round(average_change,2)}')
+print(f'Greatest Increase in Profits: {total_months[max_index+1]} ${greatest_profit}')
+print(f'Greatest Decrease in Profits: {total_months[min_index+1]} ${greatest_loss}')
+
 
 # Set variable for output file
 output_file = os.path.join("pybank_final.csv")
@@ -40,6 +49,9 @@ output_file = os.path.join("pybank_final.csv")
 with open(output_file, "w", newline="") as datafile:
     writer = csv.writer(datafile)
     writer.writerow(['Financial Analysis'])
-    writer.writerow([f'total months:{len(total_months)}'])
-
-
+    writer.writerow(['---------------------------------'])
+    writer.writerow([f'Total Months:{len(total_months)}'])
+    writer.writerow([f'Total: ${sum(profit_loss)}'])
+    writer.writerow([f'Average Change: ${round(average_change,2)}'])
+    writer.writerow([f'Greatest Increase in Profits: {total_months[max_index+1]} ${greatest_profit}'])
+    writer.writerow([f'Greatest Decrease in Profits: {total_months[min_index+1]} ${greatest_loss}'])
