@@ -24,9 +24,9 @@ with open(pypoll_csv, 'r') as csvfile:
     # Total number of votes cast
     total_votes = len(candidate_copy)
     print('')
-    print('Election Results')
-    print('---------------------')
-    print('Total Votes:   ' + str(total_votes))
+    print('Election Results\n')
+    print('---------------------\n')
+    print('Total Votes: ' + str(total_votes)+'\n')
     print('---------------------')
 
     # Store Candidates and Votes to Dictionoary
@@ -37,10 +37,11 @@ with open(pypoll_csv, 'r') as csvfile:
         pypoll[candidate_list[i]] = candidate_copy.count(candidate_list[i])
 
         #print vote count for eacah candidate
-        (float(pypoll[candidate_list[i]])/total_votes*100)
-        print("")
-        print((candidate_list[i])+'  '+str(float(pypoll[candidate_list[i]])/total_votes*100))
-        print((pypoll[candidate_list[i]]))
+        floatscore = float(pypoll[candidate_list[i]])/total_votes
+        perscore = floatscore*100
+        candidate_vote_count = pypoll[candidate_list[i]]
+
+        print(f"{candidate_list[i]}: {perscore:.3f}% ({candidate_vote_count})")
         print("----------------------")
         #iterate through dictionary
         #have a placeholder for Max
@@ -48,15 +49,14 @@ with open(pypoll_csv, 'r') as csvfile:
 
         for x, y in pypoll.items():
             if y > poll_win:
-                poll_win_vote_count = y
+                poll_win = y
                 poll_win_name = x
 
 print("")
 print("------------------------")
 print("Winner!:")
-print(f'{poll_win_name}')
+print('{}'.format(poll_win_name))
 print("------------------------")
-print("")
 
     #iterate through dictionary (make placeholder for max)
     #for x, y in pypoll.items():
